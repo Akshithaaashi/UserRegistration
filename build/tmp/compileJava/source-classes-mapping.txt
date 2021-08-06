@@ -1,2 +1,2 @@
 com/userregistration/UserRegistration.java
- UserRegistration
+ com.userregistration.UserRegistration
