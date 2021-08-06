@@ -10,12 +10,17 @@ public class UserRegistration {
         System.out.println(" User Registration Form ");
         Scanner sc = new Scanner(System.in);
 
+      //validation for first name
         System.out.println("Enter First Name :");
         String firstName = sc.next();
         validateName(firstName);
+
+        //validation for last name
+        System.out.println("Enter Last Name :");
+        String lastName = sc.next();
+        validateName(lastName);
         sc.close();
     }
-
     static void validateName (String name){
         String nameRegex = "^[A-Z][a-z]{2,}$";
         if (Pattern.compile(nameRegex).matcher(name).matches())
