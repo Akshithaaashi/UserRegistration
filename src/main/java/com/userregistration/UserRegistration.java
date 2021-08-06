@@ -9,16 +9,18 @@ public class UserRegistration {
 
         System.out.println(" User Registration Form ");
         Scanner sc = new Scanner(System.in);
-
-      //validation for first name
+      //validation for first nanme
         System.out.println("Enter First Name :");
         String firstName = sc.next();
         validateName(firstName);
-
-        //validation for last name
+     //validation for last name
         System.out.println("Enter Last Name :");
         String lastName = sc.next();
         validateName(lastName);
+    //validation for email
+        System.out.println("Enter Email id :");
+        String email = sc.next();
+        validateEmail(email);
         sc.close();
     }
     static void validateName (String name){
@@ -27,6 +29,15 @@ public class UserRegistration {
             System.out.println("Valid");
         else
             System.out.println("Name should start with capital letter and need min 3 characters.");
+    }
+
+    static void validateEmail(String email) {
+        String emailRegex = "^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})?$";
+
+        if (Pattern.compile(emailRegex).matcher(email).matches())
+            System.out.println("Valid");
+        else
+            System.out.println("Invalid email id");
 
     }
 }
