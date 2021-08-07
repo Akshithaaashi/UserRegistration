@@ -10,9 +10,11 @@ public class UserRegistration {
         System.out.println(" User Registration Form ");
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter Mobile Number :");
+       /* System.out.println("Enter Mobile Number :");
         String mobNo = sc.nextLine();
-        validateMobileNumber(mobNo);
+        validateMobileNumber(mobNo);*/
+
+        Scanner scline = new Scanner(System.in);
 
         System.out.println("Enter First Name :");
         String firstName = sc.next();
@@ -26,14 +28,20 @@ public class UserRegistration {
         String email = sc.next();
         validateEmail(email);
 
+        System.out.println("Enter Mobile Number :");
+        String mobNo = scline.nextLine();
+        validateMobileNumber(mobNo);
+
         System.out.println("Enter Password :");
-        String password = sc.next();
+        String password = scline.nextLine();
         validatePassword(password);
+
         sc.close();
+        scline.close();
+
     }
     static void validateMobileNumber(String number) {
         String mobNoRegex = "^[7-9]{1}[0-9]{9}$";
-
         if (Pattern.compile(mobNoRegex).matcher(number).matches())
             System.out.println("Valid");
         else
@@ -44,8 +52,10 @@ public class UserRegistration {
         if (Pattern.compile(nameRegex).matcher(name).matches())
             System.out.println("Valid");
         else
+
             System.out.println("Name should start with capital letter and need min 3 characters.");
     }
+
     static void validateEmail(String email) {
         String emailRegex = "^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})?$";
 
@@ -56,8 +66,10 @@ public class UserRegistration {
     }
     static void validatePassword(String password) {
         String passwordRegex = "[\\w\\W]{8,}";
-
-        if (Pattern.compile(passwordRegex).matcher(password).matches())
+        String passwordRegex2 = ".*[A-Z].*";
+        if (Pattern.compile(passwordRegex).matcher(password).matches() &&
+                Pattern.compile(passwordRegex2).matcher(password).matches())
+            // if (Pattern.compile(passwordRegex).matcher(password).matches())
             System.out.println("Valid");
         else
             System.out.println("Password should contain minimum 8 characters.");
