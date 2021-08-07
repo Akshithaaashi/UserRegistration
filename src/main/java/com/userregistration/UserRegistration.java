@@ -40,6 +40,7 @@ public class UserRegistration {
         scline.close();
 
     }
+
     static void validateMobileNumber(String number) {
         String mobNoRegex = "^[7-9]{1}[0-9]{9}$";
         if (Pattern.compile(mobNoRegex).matcher(number).matches())
@@ -65,13 +66,11 @@ public class UserRegistration {
             System.out.println("Invalid email id");
     }
     static void validatePassword(String password) {
-        String passwordRegex = "[\\w\\W]{8,}";
-        String passwordRegex2 = ".*[A-Z].*";
-        if (Pattern.compile(passwordRegex).matcher(password).matches() &&
-                Pattern.compile(passwordRegex2).matcher(password).matches())
+        String passwordRegex = "^[A-Z]{1}+[a-zA-z1-9]{6,}[1-9]{1}$";
+        if (Pattern.compile(passwordRegex).matcher(password).matches())
             // if (Pattern.compile(passwordRegex).matcher(password).matches())
             System.out.println("Valid");
         else
             System.out.println("Password should contain minimum 8 characters.");
+        }
     }
-}
