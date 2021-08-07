@@ -66,7 +66,7 @@ public class UserRegistration {
             System.out.println("Invalid email id");
     }
     static void validatePassword(String password) {
-        String passwordRegex = "^[A-Z]{1}+[a-zA-z1-9]{6,}[1-9]{1}$";
+        String passwordRegex = "^[A-Z]{1}+[a-zA-z1-9]{5,}[@$^]{1}[1-9]{1}$";
         if (Pattern.compile(passwordRegex).matcher(password).matches())
             // if (Pattern.compile(passwordRegex).matcher(password).matches())
             System.out.println("Valid");
