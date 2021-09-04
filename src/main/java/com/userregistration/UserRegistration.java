@@ -1,5 +1,6 @@
 package com.userregistration;
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,51 +8,47 @@ public class UserRegistration {
 	
 	// Objects
 	static Scanner scanner = new Scanner(System.in);
-	static Validater validate = new Validater();
 
-	/** Ability to ask user for his first name and Checks it */
-	public void userFirstName() {
+	public void userInput() {
+		//variables for pattern
+		String name = "[A-Z]{1}[a-z]{2,}"; // Name Condition
+		String eMail = "^[a-z]+[0-9]*([.+-][a-zA-Z0-9]+){0,1}@[a-z0-9]+\\.[a-z]{2,3}(\\.[a-z]{2,3}){0,1}$"; // Email Condition
+		String mobileNumber = "[+]{0,1}[9][1][ -]{0,1}[6-9][0-9]{9}"; //Mobile Number Condition
+		String password = "^(?=.*[@#$%^&+=])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$"; // Password Condition
+		
 		System.out.println("\nEnter the First Name:");
-		boolean result = validate.checkName(scanner.nextLine());
-		output(result);
-		if (result == false) userFirstName();
-	}
+		String fisrtName=scanner.nextLine();
+		validate(fisrtName,name);
 
-	/** Ability to ask user for his last name and Checks it */
-	public void userLastName() {
 		System.out.println("\nEnter the Last Name:");
-		boolean result = validate.checkName(scanner.nextLine());
-		output(result);
-		if (result == false) userLastName();
-	}
+		String lastName=scanner.nextLine();
+		validate(lastName,name);
 
-	/** Ability to ask user for his E-mail and checks it */
-	public void userEmail() {
 		System.out.println("\nEnter the E-mail :");
-		boolean result = validate.checkEmail(scanner.nextLine());
-		output(result);
-		if (result == false) userEmail();
-	}
+		String mail=scanner.nextLine();
+		validate(mail,eMail);
 	
-	/** Ability to ask user for his Phone Number and checks it */
-	public void userPhoneNumber() {
 		System.out.println("\nEnter the Phone Number :");
-		boolean result = validate.checkMobileNumber(scanner.nextLine());
-		output(result);
-		if (result == false) userPhoneNumber();
-	}
+		String phoneNumber=scanner.nextLine();
+		validate(phoneNumber,mobileNumber);
 	
-	/** Ability to ask user for new Password and check it */
-	public void userPassword() {
 		System.out.println("\nEnter the Password :");
-		boolean result = validate.checkPassword(scanner.nextLine());
-		output(result);
-		if (result == false) userPassword();
+		String pass=scanner.nextLine();
+		validate(pass,password);
+		
 	}
 	
-	/** Ability to print valid or not based on result */
-	public void output(boolean result) {
-		if (result) System.out.println("Valid Input");
-		else System.out.println("Invalid Input");
+	public void validate(String userInput, final String condition) {
+		  boolean isValid = isDataValid(userInput,(String info) -> {
+	                    return info.matches(condition);
+	                });
+
+	        System.out.println("the provided input is " + isValid);
+
+	    }
+	
+	private boolean isDataValid(String data, Predicate<String> predicate) {
+		return predicate.test(data);
 	}
+		
 }

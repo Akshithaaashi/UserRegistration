@@ -13,11 +13,7 @@ public class MainRunner {
 		UserRegistration userRegistration=new UserRegistration();//Object
 		
 		//Calling Methods
-		userRegistration.userFirstName();
-		userRegistration.userLastName();
-		userRegistration.userPhoneNumber();
-		userRegistration.userEmail();
-		userRegistration.userPassword();
+		userRegistration.userInput();
 		
 	}
 
